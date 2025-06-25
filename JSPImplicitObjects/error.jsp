@@ -1,15 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page isErrorPage="true" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Error</title>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
 </head>
 <body>
-<%@ page isErrorPage="true" %>
-<h2>An error occurred!</h2>
-<p><strong>Error:</strong> <%= exception.getMessage() %></p>
-
+    <h2 style="color:red;">Oops! An error occurred:</h2>
+    <p><b>Exception:</b> <%= exception %></p>
+    <a href="form.jsp">Go back to form</a>
 </body>
 </html>
