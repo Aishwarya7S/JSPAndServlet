@@ -1,0 +1,64 @@
+CRUD Operations using Java Servlet and JDBC
+
+CRUD stands for Create, Read, Update, and Delete — the four fundamental operations used to manage data in a database.
+
+🟡 The Create operation is used to add new records to the database. In Java Servlets, this is done using an INSERT SQL statement executed through JDBC.
+Example:
+String sql = "INSERT INTO user (name, email, password) VALUES ('Java', 'java@gmail.com', 'java123')";
+Statement stmt = conn.createStatement();
+stmt.executeUpdate(sql);
+
+🟠 The Read operation is used to fetch and display data from the database. This is commonly done in a servlet like ViewServlet.java.
+Example:
+String sql = "SELECT * FROM user";
+Statement stmt = conn.createStatement();
+ResultSet rs = stmt.executeQuery(sql);
+while (rs.next()) {
+    out.println("ID: " + rs.getInt("id"));
+    out.println("Name: " + rs.getString("name"));
+    out.println("Email: " + rs.getString("email"));
+    out.println("Password: " + rs.getString("password"));
+}
+
+Better format using HTML Table:
+out.println("<table border='1'><tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th></tr>");
+while (rs.next()) {
+    out.println("<tr>");
+    out.println("<td>" + rs.getInt("id") + "</td>");
+    out.println("<td>" + rs.getString("name") + "</td>");
+    out.println("<td>" + rs.getString("email") + "</td>");
+    out.println("<td>" + rs.getString("password") + "</td>");
+    out.println("</tr>");
+}
+out.println("</table>");
+
+🔵 The Update operation is used to modify existing records in the database. This is commonly done in UpdateServlet.java.
+Example:
+String sql = "UPDATE user SET email='servlet@gmail.com' WHERE id=1";
+Statement stmt = conn.createStatement();
+stmt.executeUpdate(sql);
+
+🔴 The Delete operation removes records from the database. This is typically implemented in DeleteServlet.java.
+Example:
+String sql = "DELETE FROM user WHERE id=1";
+Statement stmt = conn.createStatement();
+stmt.executeUpdate(sql);
+
+📝 Components Used
+
+1. Java Servlets – Handles HTTP requests for each CRUD action (/add, /view, /update, /delete)
+2. MySQL Database – Stores user data (table: user)
+3. JDBC API – Connects Java to MySQL
+4. Apache Tomcat – Servlet container to deploy and run Java web apps
+5. Eclipse IDE – Used to write, compile and run the project
+6. MySQL JDBC Connector – Must be added to project libraries
+
+📁 Sample Table Structure
+
+CREATE TABLE user (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100),
+  email VARCHAR(100),
+  password VARCHAR(100)
+);
+
